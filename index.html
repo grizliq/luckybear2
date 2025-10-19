@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Bear Казино</title>
+    <link rel="icon" type="image/png" href="icons/favlogo.png">
+    <style>
+        /* 1. ПОДКЛЮЧЕНИЕ ШРИФТОВ */
+        @font-face {
+            font-family: 'Widocktrialbold';
+            src: url('fonts/Widocktrialbold.woff2') format('woff2'),
+                 url('fonts/Widocktrialbold.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'FindSansPro';
+            src: url('fonts/FindSansPro-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* --- ОБЩИЕ СТИЛИ И ПЕРЕМЕННЫЕ --- */
+        :root {
+            --bg-color: #E9EFF9;
+            --primary-blue: #297FFF;
+            --dark-blue: #3A4C66;
+            --text-light: #ffffff;
+            --container-gray-bg: #F0F2F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'FindSansPro', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-blue);
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('icons/fon.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(2px);
+        }
+
+        .main-wrapper {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Widocktrialbold', sans-serif;
+        }
+
+        /* --- СКРЫТИЕ ПЕРЕНОСА СТРОКИ НА ДЕСКТОПЕ --- */
+        .mobile-break {
+            display: none;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header .logo {
+            width: 140px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: var(--dark-blue);
+        }
+        
+        .header h1 span {
+            color: var(--primary-blue);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            max-width: 450px;
+            color: #6a788e;
+            margin-bottom: 10px;
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 16px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-family: 'Widocktrialbold', sans-serif;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border: none;
+            transition: all 0.3s ease;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn .icon {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* --- СЛАЙДЕР ИГР --- */
+        .games-slider {
+            width: 100vw;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .games-track {
+            display: flex;
+            gap: 40px;
+            width: calc(220px * 20);
+            animation: scroll 40s linear infinite;
+            position: absolute;
+            left: 0;
+        }
+
+        .game-item {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-220px * 10)); }
+        }
+
+        /* --- БЛОК "ПОЧЕМУ МЫ" --- */
+        .why-us {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .why-us h2 {
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+        .why-us h2 span { color: var(--primary-blue); }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            padding: 40px 25px;
+            border-radius: 20px;
+            color: var(--text-light);
+            text-align: center;
+        }
+        .feature-card.dark { background-color: var(--dark-blue); }
+        .feature-card.blue { background-color: var(--primary-blue); }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* --- БЛОК "БОНУС" --- */
+        .bonus-section {
+            width: 100%;
+        }
+        .bonus-section h2 {
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .bonus-section h2 span { color: var(--primary-blue); }
+        
+        .bonus-container {
+            background-color: #FFFFFF;
+            border: 1px solid #eef2f9;
+            border-radius: 40px;
+            padding: 40px 50px;
+            text-align: left;
+            position: relative;
+            box-shadow: 0px 10px 50px rgba(41, 127, 255, 0.25);
+        }
+
+        .bonus-container h3 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+        }
+        
+        .bonus-container .subtitle {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #6a788e;
+        }
+        
+        .bonus-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        .bonus-steps::before {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 12%;
+            right: 12%;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-blue) 33%, #c9d2e0 33%);
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 20%;
+            position: relative;
+        }
+
+        .step-title {
+            font-family: 'Widocktrialbold', sans-serif;
+            font-size: 1.1rem;
+            color: #6a788e;
+        }
+
+        .step-icon {
+            width: 70px;
+            height: auto;
+            z-index: 1;
+            background-color: #FFFFFF;
+            padding: 0 5px;
+        }
+        
+        .step-amount {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+            line-height: 1.4;
+        }
+
+        .bonus-container .btn-wrapper {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .bonus-container .btn {
+            font-size: 1.2rem;
+            padding: 18px 50px;
+            border-radius: 12px;
+        }
+        
+        /* --- FOOTER --- */
+        .footer {
+            width: 100%;
+            background-color: var(--container-gray-bg);
+            border-radius: 40px;
+            padding: 30px 45px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .footer-logos {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .footer-logos .logo-main { height: 50px; }
+        .footer-logos .logo-tg { height: 30px; }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            color: #6a788e;
+            text-align: right;
+        }
+        
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #d8dde6;
+        }
+        
+        .footer-bottom {
+            font-size: 0.9rem;
+            color: #6a788e;
+            text-align: center;
+            width: 100%;
+        }
+        
+        /* --- АДАПТИВНОСТЬ --- */
+        @media (max-width: 768px) {
+            /* --- ВКЛЮЧЕНИЕ ПЕРЕНОСА СТРОКИ НА МОБИЛЬНЫХ --- */
+            .mobile-break {
+                display: block;
+            }
+
+            .header .logo { width: 120px; }
+            .header h1 {
+                font-size: 2.8rem;
+                line-height: 1.2;
+            }
+            .header p { font-size: 1rem; }
+            .header-buttons { flex-direction: column; align-items: center; gap: 15px; width: 100%; }
+            .btn { width: 100%; max-width: 320px; }
+            
+            .games-slider { height: 150px; }
+            .game-item { width: 130px; height: 130px; }
+            .games-track { animation-duration: 30s; }
+
+            .why-us h2 {
+                font-size: 2.4rem;
+                line-height: 1.2;
+            }
+            
+            .bonus-section h2 {
+                font-size: 2.4rem;
+                line-height: 1.2;
+            }
+            
+            .bonus-container { padding: 30px 15px; }
+            .bonus-container h3 { font-size: 2.5rem; }
+            .bonus-container .subtitle { font-size: 1rem; }
+
+            .bonus-steps-wrapper {
+                overflow-x: auto;
+                margin: 0 -15px;
+                padding: 0 15px;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .bonus-steps {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 30px;
+                margin-top: 30px;
+                padding-bottom: 20px;
+                position: relative;
+                width: 480px;
+            }
+            
+            .bonus-steps::before {
+                content: '';
+                position: absolute;
+                top: 35px;
+                left: 50px;
+                width: calc(100% - 100px);
+                right: auto;
+                height: 2px;
+                background: linear-gradient(to right, var(--primary-blue) 33%, #c9d2e0 33%);
+                z-index: 0;
+            }
+
+            .step {
+                flex-shrink: 0;
+                width: 100px;
+                gap: 10px;
+            }
+
+            .step-icon { width: 60px; }
+            .step-title, .step-amount { font-size: 1rem; }
+            
+            .bonus-container .btn-wrapper { margin-top: 20px; }
+            .bonus-container .btn { padding: 16px 30px; font-size: 1.1rem; }
+
+            .footer { padding: 25px; }
+            .footer-top { flex-direction: column; gap: 15px; text-align: center; }
+            .footer-copyright { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+
+        <header class="header">
+            <img src="icons/logo.png" alt="Lucky Bear Logo" class="logo">
+            <h1>Lucky Bear Казино <br class="mobile-break"><span>Официальный сайт вашей удачи</span></h1>
+            <p>Присоединяйтесь к сообществу победителей и получите бонусы</p>
+            <div class="header-buttons">
+                <a href="https://luckybear.vip/1l6hj6" class="btn">
+                    <img src="icons/www.png" alt="Website Icon" class="icon">
+                    <span>Играть на сайте</span>
+                </a>
+                <a href="https://t.me/Lucky_Bear_CashWin_bot/app?startapp=bXN0PTB4MWFhNmJiYTFkJm09Uml6eiZjPXNpdGUy" class="btn">
+                    <img src="icons/tgw.png" alt="Telegram Icon" class="icon">
+                    <span>Играть в TG</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="games-slider">
+            <div class="games-track">
+                <img src="icons/game1.png" alt="Game 1" class="game-item">
+                <img src="icons/game2.png" alt="Game 2" class="game-item">
+                <img src="icons/game3.png" alt="Game 3" class="game-item">
+                <img src="icons/game4.png" alt="Game 4" class="game-item">
+                <img src="icons/game5.png" alt="Game 5" class="game-item">
+                <img src="icons/game6.png" alt="Game 6" class="game-item">
+                <img src="icons/game7.png" alt="Game 7" class="game-item">
+                <img src="icons/game8.png" alt="Game 8" class="game-item">
+                <img src="icons/game9.png" alt="Game 9" class="game-item">
+                <img src="icons/game10.png" alt="Game 10" class="game-item">
+                <img src="icons/game1.png" alt="Game 1" class="game-item">
+                <img src="icons/game2.png" alt="Game 2" class="game-item">
+                <img src="icons/game3.png" alt="Game 3" class="game-item">
+                <img src="icons/game4.png" alt="Game 4" class="game-item">
+                <img src="icons/game5.png" alt="Game 5" class="game-item">
+                <img src="icons/game6.png" alt="Game 6" class="game-item">
+                <img src="icons/game7.png" alt="Game 7" class="game-item">
+                <img src="icons/game8.png" alt="Game 8" class="game-item">
+                <img src="icons/game9.png" alt="Game 9" class="game-item">
+                <img src="icons/game10.png" alt="Game 10" class="game-item">
+            </div>
+        </section>
+        
+        <section class="why-us">
+            <h2>ПОЧЕМУ ИМЕННО <br class="mobile-break"><span>LUCKY BEAR?</span></h2>
+            <div class="features-grid">
+                <div class="feature-card dark">
+                    <h3>Быстрые выплаты</h3>
+                    <p>Мы гарантируем моментальную обработку ваших выигрышей, чтобы вы могли наслаждаться ими без задержек.</p>
+                </div>
+                <div class="feature-card blue">
+                    <h3>Огромный выбор игр</h3>
+                    <p>От классических слотов до игр с живыми дилерами – у нас есть все, чтобы удовлетворить любого игрока.</p>
+                </div>
+                <div class="feature-card blue">
+                    <h3>Щедрые бонусы игрокам</h3>
+                    <p>Наши приветственные пакеты и регулярные акции для пользователей увеличат ваши шансы на крупный выигрыш.</p>
+                </div>
+                 <div class="feature-card dark">
+                    <h3>Безопасность и надежность</h3>
+                    <p>Современные технологии шифрования защищают ваши данные и финансовые транзакции 24/7.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bonus-section">
+            <h2>ПОЛУЧИ <span>БОНУС</span></h2>
+            <div class="bonus-container">
+                <h3>БОНУС 360% +</h3>
+                <p class="subtitle">250 фриспинов на ваши первые 4 депозита</p>
+                <div class="bonus-steps-wrapper">
+                    <div class="bonus-steps">
+                        <div class="step">
+                            <p class="step-title">1 деп</p>
+                            <img src="icons/box1.png" alt="Сундук 1" class="step-icon">
+                            <p class="step-amount">до 360%</p>
+                        </div>
+                        <div class="step">
+                            <p class="step-title">2 деп</p>
+                            <img src="icons/box2.png" alt="Сундук 2" class="step-icon">
+                            <p class="step-amount">до 360%</p>
+                        </div>
+                        <div class="step">
+                            <p class="step-title">3 деп</p>
+                            <img src="icons/box2.png" alt="Сундук 3" class="step-icon">
+                            <p class="step-amount">до 360%<br>+50 FS</p>
+                        </div>
+                        <div class="step">
+                            <p class="step-title">4 деп</p>
+                            <img src="icons/box2.png" alt="Сундук 4" class="step-icon">
+                            <p class="step-amount">до 360%<br>+200 FS</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-wrapper">
+                    <a href="https://luckybear.vip/1l6hj6" class="btn">ЗАБРАТЬ БОНУС</a>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="footer-logos">
+                    <img src="icons/favlogo.png" alt="Lucky Bear Logo" class="logo-main">
+                    <a href="https://t.me/Lucky_Bear_CashWin_bot/app?startapp=bXN0PTB4MWFhNmJiYTFkJm09Uml6eiZjPXNpdGUy">
+                        <img src="icons/tgb.png" alt="Telegram Logo" class="logo-tg">
+                    </a>
+                </div>
+                <div class="footer-copyright">
+                    © 2025 LuckyBear. Все права защищены.
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                Играйте ответственно. Только для лиц старше 18 лет.
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
