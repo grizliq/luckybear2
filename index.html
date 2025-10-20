@@ -76,7 +76,6 @@
             font-family: 'Widocktrialbold', sans-serif;
         }
 
-        /* --- СКРЫТИЕ ПЕРЕНОСА СТРОКИ НА ДЕСКТОПЕ --- */
         .mobile-break {
             display: none;
         }
@@ -101,7 +100,7 @@
             color: var(--dark-blue);
         }
         
-        .header h1 .blue-text {
+        .header h1 span {
             color: var(--primary-blue);
         }
 
@@ -186,7 +185,7 @@
             margin-bottom: 40px;
             line-height: 1.2;
         }
-        .why-us h2 .blue-text { color: var(--primary-blue); }
+        .why-us h2 span { color: var(--primary-blue); }
         
         .features-grid {
             display: grid;
@@ -226,7 +225,7 @@
             text-align: center;
             line-height: 1.2;
         }
-        .bonus-section h2 .blue-text { color: var(--primary-blue); }
+        .bonus-section h2 span { color: var(--primary-blue); }
         
         .bonus-container {
             background-color: #FFFFFF;
@@ -353,22 +352,25 @@
             text-align: center;
             width: 100%;
         }
+
+        .footer-seo-text {
+            margin-top: 15px;
+            font-size: 0.75rem;
+            color: #aeb8c5;
+            text-align: justify;
+            line-height: 1.6;
+        }
         
         /* --- АДАПТИВНОСТЬ --- */
         @media (max-width: 768px) {
-            /* --- ВКЛЮЧЕНИЕ ПЕРЕНОСА СТРОКИ НА МОБИЛЬНЫХ --- */
             .mobile-break {
-                display: block; /* Делаем <br> видимым */
+                display: block;
             }
 
             .header .logo { width: 120px; }
             .header h1 {
-                font-size: 2.2rem; /* Уменьшаем основной размер */
-                line-height: 1.1;
-                margin-top: 10px; /* Немного опускаем, чтобы логотип не прилипал */
-            }
-            .header h1 .blue-text {
-                font-size: 2.2rem; /* Уменьшаем размер синего текста */
+                font-size: 2.8rem;
+                line-height: 1.2;
             }
             .header p { font-size: 1rem; }
             .header-buttons { flex-direction: column; align-items: center; gap: 15px; width: 100%; }
@@ -378,20 +380,9 @@
             .game-item { width: 130px; height: 130px; }
             .games-track { animation-duration: 30s; }
 
-            .why-us h2 {
-                font-size: 2.2rem; /* Уменьшаем размер h2 */
+            .why-us h2, .bonus-section h2 {
+                font-size: 2.4rem;
                 line-height: 1.2;
-            }
-            .why-us h2 .blue-text { 
-                font-size: 2.2rem; /* Уменьшаем размер синего текста в h2 */
-            }
-            
-            .bonus-section h2 {
-                font-size: 2.2rem; /* Уменьшаем размер h2 */
-                line-height: 1.2;
-            }
-            .bonus-section h2 .blue-text {
-                font-size: 2.2rem;
             }
             
             .bonus-container { padding: 30px 15px; }
@@ -452,14 +443,14 @@
 
         <header class="header">
             <img src="icons/logo.png" alt="Lucky Bear Logo" class="logo">
-            <h1>LUCKY BEAR <br class="mobile-break"> КАЗИНО <br class="mobile-break"><span class="blue-text">ОФИЦИАЛЬНЫЙ <br class="mobile-break"> САЙТ ВАШЕЙ УДАЧИ</span></h1>
+            <h1>Lucky Bear Казино <br class="mobile-break"><span>Официальный сайт вашей удачи</span></h1>
             <p>Присоединяйтесь к сообществу победителей и получите бонусы</p>
             <div class="header-buttons">
-                <a href="#" class="btn">
+                <a href="https://luckybear.vip/1l6hj6" class="btn">
                     <img src="icons/www.png" alt="Website Icon" class="icon">
                     <span>Играть на сайте</span>
                 </a>
-                <a href="#" class="btn">
+                <a href="https://t.me/Lucky_Bear_CashWin_bot/app?startapp=bXN0PTB4MWFhNmJiYTFkJm09Uml6eiZjPXNpdGUy" class="btn">
                     <img src="icons/tgw.png" alt="Telegram Icon" class="icon">
                     <span>Играть в TG</span>
                 </a>
@@ -492,7 +483,7 @@
         </section>
         
         <section class="why-us">
-            <h2>ПОЧЕМУ ИМЕННО <br class="mobile-break"><span class="blue-text">LUCKY BEAR?</span></h2>
+            <h2>ПОЧЕМУ ИМЕННО <br class="mobile-break"><span>LUCKY BEAR?</span></h2>
             <div class="features-grid">
                 <div class="feature-card dark">
                     <h3>Быстрые выплаты</h3>
@@ -514,7 +505,7 @@
         </section>
 
         <section class="bonus-section">
-            <h2>ПОЛУЧИ <br class="mobile-break"><span class="blue-text">БОНУС</span></h2>
+            <h2>ПОЛУЧИ <span>БОНУС</span></h2>
             <div class="bonus-container">
                 <h3>БОНУС 360% +</h3>
                 <p class="subtitle">250 фриспинов на ваши первые 4 депозита</p>
@@ -543,7 +534,7 @@
                     </div>
                 </div>
                 <div class="btn-wrapper">
-                    <a href="#" class="btn">ЗАБРАТЬ БОНУС</a>
+                    <a href="https://luckybear.vip/1l6hj6" class="btn">ЗАБРАТЬ БОНУС</a>
                 </div>
             </div>
         </section>
@@ -552,7 +543,7 @@
             <div class="footer-top">
                 <div class="footer-logos">
                     <img src="icons/favlogo.png" alt="Lucky Bear Logo" class="logo-main">
-                    <a href="#">
+                    <a href="https://t.me/Lucky_Bear_CashWin_bot/app?startapp=bXN0PTB4MWFhNmJiYTFkJm09Uml6eiZjPXNpdGUy">
                         <img src="icons/tgb.png" alt="Telegram Logo" class="logo-tg">
                     </a>
                 </div>
@@ -563,6 +554,9 @@
             <div class="footer-divider"></div>
             <div class="footer-bottom">
                 Играйте ответственно. Только для лиц старше 18 лет.
+            </div>
+            <div class="footer-seo-text">
+                <b>Популярные запросы:</b> казино лаки бир, лаки бир, lucky bear casino, лаки бир официальный сайт, лаки бир вход, lucky bear официальный сайт, казино lucky bear, лаки бир регистрация, lucky bear вход, лаки бир сайт, laki bir, лаки бир играть онлайн, lucky bear играть, лаки бир зеркало, lucky bear зеркало рабочее, лаки бир бонусы, lucky bear casino регистрация, игровые автоматы лаки бир, слоты lucky bear, мобильная версия лаки бир, скачать lucky bear, промокоды лаки бир, lucky bear casino bonuses, промокод на лаки бир, бонус код lucky bear, lucky bear free spins, lucky bear отзывы, казино лаки бир зеркало, lucky bear online casino, лаки бир рабочее зеркало.
             </div>
         </footer>
 
